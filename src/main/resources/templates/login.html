@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>FitStats - Logowanie</title>
+    <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700" rel="stylesheet">
+    <!--
+    CSS
+    ============================================= -->
+    <link rel="stylesheet" th:href="@{/css/linearicons.css}">
+    <link rel="stylesheet" th:href="@{/css/font-awesome.min.css}">
+    <link rel="stylesheet" th:href="@{/css/bootstrap.css}">
+    <link rel="stylesheet" th:href="@{/css/magnific-popup.css}">
+    <link rel="stylesheet" th:href="@{/css/nice-select.css}">
+    <link rel="stylesheet" th:href="@{/css/animate.min.css}">
+    <link rel="stylesheet" th:href="@{/css/owl.carousel.css}">
+    <link rel="stylesheet" th:href="@{/css/main.css}">
+</head>
+<body>
+
+
+<header id="header" >
+    <div class="container">
+        <div class="row header-top align-items-center">
+            <div class="col-lg-4 col-sm-4 menu-top-left">
+            </div>
+            <div class="col-lg-4 menu-top-middle justify-content-center d-flex">
+                <a href="/">
+                    <h1>FitStats</h1>
+                </a>
+            </div>
+        </div>
+    </div>
+    <hr>
+
+<div class="title text-center">
+    <form method="post" action="/login" th:object="${loginForm}">
+    <section class="convert-area" id="convert">
+        <div class="container">
+            <div class="convert-wrap">
+                <div class="row d-flex justify-content-center">
+                    <div class="menu-content pb-70 col-lg-8">
+                        <div class="title text-center">
+                            <h1 class="text-white mb-10">Logowanie</h1>
+                            <p class="text-white">Nie możesz korzystać z serwisu bez zologwania się.
+                            <br/>Wpisz swoje dane, aby się zalogować.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+    <div class="row justify-content-center align-items-start">
+        <div class="col-lg-3 col-md-6 cols-img">
+            <input type="text" th:field="*{login}" class="form-control mb-20" placeholder="Login">
+        </div>
+        <div class="col-lg-3 col-md-6 cols">
+            <input type="password" placeholder="Hasło" th:field="*{password}" class="form-control mb-20">
+        </div>
+        <div class="col-lg-3 col-md-6 cols">
+            <input width="90%" type="submit" value="Zaloguj" class="primary-btn header-btn text-uppercase">
+        </div>
+    </div>
+                <p class="text-white" th:if="${login.isLoginFail()}" th:text="${'Sprawdź dane logowania' }"></p>
+
+            </div>
+        </div>
+    </section>
+    </form>
+
+    <hr>
+
+
+
+</div>
+</body>
+</html>

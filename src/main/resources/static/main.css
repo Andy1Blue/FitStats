@@ -1,0 +1,33 @@
+body{
+    font-family: Verdana;
+    font-size: 10px;
+    alignment: center;
+}
+
+#tableaccentbg {
+    background: #e2bd8b;
+    border: 1px solid black;
+    text-align: center;
+}
+
+table.tableform {
+    border-spacing: 15px 10px;
+    background: #ffffff;
+}
+table.tableform tr {}
+table.tableform td {
+    padding: 12px;
+    background: #f9e7aa;
+}
+
+table.tablestandard {
+    border: 1px solid #000000;
+    text-align: center;
+    border-collapse: collapse;
+}
+table.tablestandard tr {
+}
+table.tablestandard td {
+    border: 1px solid #000000;
+    padding: 5px;
+}

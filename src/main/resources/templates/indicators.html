@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.w3.org/1999/xhtml" class="no-js">
+<head>
+    <!-- Mobile Specific Meta -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Favicon-->
+    <link rel="shortcut icon" href="img/fav.png">
+    <!-- Author Meta -->
+    <meta name="author" content="codepixer">
+    <!-- Meta Description -->
+    <meta name="description" content="">
+    <!-- Meta Keyword -->
+    <meta name="keywords" content="">
+    <!-- meta character set -->
+    <meta charset="UTF-8">
+    <!-- Site Title -->
+    <title>FitStats - Statystyki - Wskaźniki</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700" rel="stylesheet">
+    <!--
+    CSS
+    ============================================= -->
+    <link rel="stylesheet" th:href="@{/css/linearicons.css}">
+    <link rel="stylesheet" th:href="@{/css/font-awesome.min.css}">
+    <link rel="stylesheet" th:href="@{/css/bootstrap.css}">
+    <link rel="stylesheet" th:href="@{/css/magnific-popup.css}">
+    <link rel="stylesheet" th:href="@{/css/nice-select.css}">
+    <link rel="stylesheet" th:href="@{/css/animate.min.css}">
+    <link rel="stylesheet" th:href="@{/css/owl.carousel.css}">
+    <link rel="stylesheet" th:href="@{/css/main.css}">
+</head>
+<body>
+
+<header id="header" >
+    <div class="container">
+        <div class="row header-top align-items-center">
+            <div class="col-lg-4 col-sm-4 menu-top-left">
+                <!--left side-->
+                <a th:href="${login.isLogin() ? '/profile/' + login.getAuthor() : '/login'}">
+                    <img src="/img/avatar.png" height="40px" width="40px"/></a>
+                <a th:href="${'/profile/' + login.getAuthor()}" class="small-text">zobacz profil</a>
+            </div>
+            <div class="col-lg-4 menu-top-middle justify-content-center d-flex">
+                <a href="/">
+                    <h1>FitStats</h1>
+                </a>
+            </div>
+            <div class="col-lg-4 col-sm-4 menu-top-right">
+                <!-- rigt side-->
+                <a class="small-text" th:text="${login.isLogin() ? 'Wyloguj ' + login.getAuthor() : 'Zaloguj się'}" th:href="${login.isLogin() ? '/logout' : '/login'}"></a>  | <a class="small-text" th:href="${'/profile/settings/' + login.getAuthor()}">Ustawienia</a>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <div class="container">
+        <div class="row align-items-center justify-content-center d-flex">
+            <nav id="nav-menu-container">
+                <ul class="nav-menu">
+                    <li class="menu-active"><a href="/">home</a></li>
+                    <li><a href="/stats">statystyki</a>
+                        <ul>
+                            <li><a href="/stats">pełna tabela</a></li>
+                            <li><a href="/stats/indicators">wskaźniki</a></li>
+                            <li><a href="/stats/summary">podsumowanie i osiągnięcia</a></li>
+                            <li><a href="/stats/weight">wykresy wagi</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="/add">dodaj nowe</a></li>
+                </ul>
+            </nav><!-- #nav-menu-container -->
+        </div>
+    </div>
+</header><!-- #header -->
+
+<!-- start banner Area -->
+<section class="banner-area relative" id="home">
+    <div class="overlay overlay-bg"></div>
+    <div class="container">
+        <div class="row fullscreen d-flex align-items-center justify-content-start">
+            <div class="banner-content col-lg-12 col-md-12">
+                <h1 class="text-uppercase">
+                    FitStats<br>
+                    Z nami utrzymasz linię
+                </h1>
+                <p class="text-white text-uppercase pt-20 pb-20">
+                    Kontroluj swoje parametry
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End banner Area -->
+
+<!-- Start schedule Area -->
+<section class="schedule-area section-gap" id="schedule">
+    <div class="container">
+        <div class="row d-flex justify-content-center">
+            <div class="menu-content pb-70 col-lg-8">
+                <div class="title text-center">
+
+                    <nav name="stats_menu">
+
+                        <a href="/stats">pełna tabela</a> |
+                        <a href="/stats/indicators">wskaźniki</a> |
+                        <a href="/stats/summary">podsumowanie i osiągnięcia</a> |
+                        <a href="/stats/weight">wykresy wagi</a>
+
+                    </nav>
+                    <br/><br/>
+                    <h1 class="mb-10">Twoje wskaźniki</h1>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="table-wrap col-lg-12">
+
+
+                <div class="col-lg-4">
+                    <div class="single-offer">
+                        <img class="img-fluid" src="img/o2.png" alt="">
+                        <h4>Twoje BMI to <span th:each="lastWeightToShow : ${lastWeight}" th:text="${data.countBMI(lastWeightToShow.getWeight(),userGrowth)}"></span></h4>
+                        <p>
+                            <h5><span th:each="lastWeightToShow : ${lastWeight}" th:text="${data.checkBMI(data.countBMI(lastWeightToShow.getWeight(),userGrowth))}"></span></h5>
+                            <br/><br/>
+                            Waga:  <span th:each="lastWeightToShow : ${lastWeight}" th:text="${lastWeightToShow.getWeight()}"></span><br/>
+                            Wzrost: <span th:text="${userGrowth}"></span>
+                          </p>
+                    </div>
+                </div>
+
+                <br/><br/>
+                <h1 class="mb-10">Wyniki</h1>
+                <br/><br/>
+
+                <div class="row">
+                    <div class="table-wrap col-lg-12">
+                        <table class="schdule-table table table-bordered">
+                            <thead class="thead-light">
+                            <tr>
+                                <th class="head" scope="col">Parametr</th>
+                                <th class="head" scope="col">Twoja wartość</th>
+                                <th class="head" scope="col">Data dodania do bazy</th>
+                                <th class="head" scope="col">Norma</th>
+                                <th class="head" scope="col">Wynik</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <th class="name" scope="row">Tkanka tłuszczowa (%)</th>
+                                <th class="name" scope="row" th:each="lastFatToShow : ${lastFat}" th:text="${lastFatToShow.getFat()}"></th>
+                                <th class="name" scope="row"  th:each="lastFatToShow : ${lastFat}" th:text="${data.convertTimestampToString(lastFatToShow.getCreationDate())}"></th>
+                                <th class="name" scope="row"></th>
+                                <th class="name" scope="row"></th>
+                            </tr>
+                            <tr>
+                                <th class="name" scope="row">Zawartość wody w organiźmie (%)</th>
+                                <th class="name" scope="row" th:each="lastWaterToShow : ${lastWater}" th:text="${lastWaterToShow.getWater()}"></th>
+                                <th class="name" scope="row"  th:each="lastWaterToShow : ${lastWater}" th:text="${data.convertTimestampToString(lastWaterToShow.getCreationDate())}"></th>
+                                <th class="name" scope="row"></th>
+                                <th class="name" scope="row"></th>
+                            </tr>
+                            <tr>
+                                <th class="name" scope="row">Tkanka mięśniowa (%)</th>
+                                <th class="name" scope="row" th:each="lastMusclesToShow : ${lastFat}" th:text="${lastMusclesToShow.getMuscles()}"></th>
+                                <th class="name" scope="row"  th:each="lastMusclesToShow : ${lastFat}" th:text="${data.convertTimestampToString(lastMusclesToShow.getCreationDate())}"></th>
+                                <th class="name" scope="row"></th>
+                                <th class="name" scope="row" th:each="lastMusclesToShow : ${lastFat}" th:text="${data.checMuscles(lastMusclesToShow.getMuscles(),userGender)}"></th>
+                            </tr>
+                            <tr>
+                                <th class="name" scope="row">Zawartość tkanki kostnej (%)</th>
+                                <th class="name" scope="row" th:each="lastBonesToShow : ${lastBones}" th:text="${lastBonesToShow.getBones()}"></th>
+                                <th class="name" scope="row"  th:each="lastBonesToShow : ${lastBones}" th:text="${data.convertTimestampToString(lastBonesToShow.getCreationDate())}"></th>
+                                <th class="name" scope="row"></th>
+                                <th class="name" scope="row"></th>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End schedule Area -->
+
+<!-- Start callto Area -->
+<section class="callto-area section-gap relative">
+    <div class="overlay overlay-bg"></div>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-12">
+                <h1 class="text-white">Pamiętaj o aktualizacji swoich parametrów na bieżąco</h1>
+                <p class="text-white pt-20 pb-20">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore  et dolore <br> magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.
+                </p>
+                <a class="primary-btn" href="/add">Dodaj nowy rekord</a>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End callto Area -->
+
+<!-- start footer Area -->
+<footer class="footer-area section-gap">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3  col-md-6 col-sm-6">
+                <div class="single-footer-widget">
+                    <h4>O nas</h4>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore dolore magna aliqua.
+                    </p>
+                </div>
+            </div>
+            <div class="col-lg-4  col-md-6 col-sm-6">
+                <div class="single-footer-widget">
+                    <h4>Skontaktuj się z nami</h4>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore dolore magna aliqua.
+                    </p>
+                </div>
+            </div>
+            <div class="col-lg-5  col-md-6 col-sm-6">
+                <div class="single-footer-widget">
+                    <h4>Dlaczego warto ćwiczyć</h4>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore dolore magna aliqua.</p>
+
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom row">
+            <p class="footer-text m-0 col-lg-6">
+                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                Copyright &copy;<script>document.write(new Date().getFullYear());</script> | This template is made with <i class="icon-heart3" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+            </p>
+            <div class="footer-social col-lg-6">
+                <a href="#"><i class="fa fa-facebook"></i></a>
+                <a href="#"><i class="fa fa-twitter"></i></a>
+                <a href="#"><i class="fa fa-dribbble"></i></a>
+                <a href="#"><i class="fa fa-behance"></i></a>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- End footer Area -->
+
+<script src="js/vendor/jquery-2.2.4.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="js/vendor/bootstrap.min.js"></script>
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBhOdIF3Y9382fqJYt5I_sswSrEw5eihAA"></script>
+<script src="js/easing.min.js"></script>
+<script src="js/hoverIntent.js"></script>
+<script src="js/superfish.min.js"></script>
+<script src="js/jquery.ajaxchimp.min.js"></script>
+<script src="js/jquery.magnific-popup.min.js"></script>
+<script src="js/owl.carousel.min.js"></script>
+<script src="js/jquery.sticky.js"></script>
+<script src="js/jquery.nice-select.min.js"></script>
+<script src="js/parallax.min.js"></script>
+<script src="js/waypoints.min.js"></script>
+<script src="js/jquery.counterup.min.js"></script>
+<script src="js/mail-script.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
