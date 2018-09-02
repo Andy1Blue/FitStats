@@ -117,7 +117,7 @@
                 <table class="schdule-table table table-bordered">
                     <thead class="thead-light">
                     <tr>
-                        <th class="head" scope="col">Data utworzenia</th>
+                        <th class="head" scope="col">Data pomiaru</th>
                         <th class="head" scope="col">Komentarz</th>
                         <th class="head" scope="col">Hand</th>
                         <th class="head" scope="col">Talia</th>
@@ -135,21 +135,23 @@
                     </tr>
                     </thead>
                     <tbody>
+
                     <tr th:each="item : ${dataLoginUser}">
-                        <th class="name" scope="row"  th:text="${data.convertTimestampToString(item.getCreationDate())}"></th>
-                        <th class="name" scope="row"  th:text="${item.getComment()}"></th>
-                        <th class="name" scope="row"  th:text="${item.getHand()}"></th>
-                        <th class="name" scope="row"  th:text="${item.getWaist()}"></th>
-                        <th class="name" scope="row"  th:text="${item.getBelly()}"></th>
-                        <th class="name" scope="row"  th:text="${item.getBottom()}"></th>
-                        <th class="name" scope="row"  th:text="${item.getThigh()}"></th>
-                        <th class="name" scope="row"  th:text="${item.getCalf()}"></th>
-                        <th class="name" scope="row"  th:text="${item.getWeight()}"></th>
-                        <th class="name" scope="row"  th:text="${item.getFat()}"></th>
-                        <th class="name" scope="row"  th:text="${item.getWater()}"></th>
-                        <th class="name" scope="row"  th:text="${item.getMuscles()}"></th>
-                        <th class="name" scope="row"  th:text="${item.getBones()}"></th>
-                        <th class="name" scope="row" th:text="${item.getCaloric()}"></th>
+                        <!--<th class="name" scope="row"  th:text="${data.convertTimestampToString(item.getCreationDate())}"></th>-->
+                        <th class="name" scope="row"  th:text="${data.convertToCorrectDateFormat(item.getAddingDate())}"></th>
+                        <th class="name" scope="row"  th:text="${data.ifZeroShowNull(item.getComment())}"></th>
+                        <th class="name" scope="row"  th:text="${data.ifZeroShowNull(item.getHand()) + ' ' + data.compareToLastParametr(0,item.getHand(),item.getId())}"></th>
+                        <th class="name" scope="row"  th:text="${data.ifZeroShowNull(item.getWaist()) + ' ' + data.compareToLastParametr(1,item.getWaist(),item.getId())}"></th>
+                        <th class="name" scope="row"  th:text="${data.ifZeroShowNull(item.getBelly()) + ' ' + data.compareToLastParametr(2,item.getBelly(),item.getId())}"></th>
+                        <th class="name" scope="row"  th:text="${data.ifZeroShowNull(item.getBottom()) + ' ' + data.compareToLastParametr(3,item.getBottom(),item.getId())}"></th>
+                        <th class="name" scope="row"  th:text="${data.ifZeroShowNull(item.getThigh()) + ' ' + data.compareToLastParametr(4,item.getThigh(),item.getId())}"></th>
+                        <th class="name" scope="row"  th:text="${data.ifZeroShowNull(item.getCalf()) + ' ' + data.compareToLastParametr(5,item.getCalf(),item.getId())}"></th>
+                        <th class="name" scope="row"  th:text="${data.ifZeroShowNull(item.getWeight()) + ' ' + data.compareToLastParametr(6,item.getWeight(),item.getId())}"></th>
+                        <th class="name" scope="row"  th:text="${data.ifZeroShowNull(item.getFat())+ ' ' + data.compareToLastParametr(7,item.getFat(),item.getId())}"></th>
+                        <th class="name" scope="row"  th:text="${data.ifZeroShowNull(item.getWater())+ ' ' + data.compareToLastParametr(8,item.getWater(),item.getId())}"></th>
+                        <th class="name" scope="row"  th:text="${data.ifZeroShowNull(item.getMuscles())+ ' ' + data.compareToLastParametr(9,item.getMuscles(),item.getId())}"></th>
+                        <th class="name" scope="row"  th:text="${data.ifZeroShowNull(item.getBones())+ ' ' + data.compareToLastParametr(10,item.getBones(),item.getId())}"></th>
+                        <th class="name" scope="row" th:text="${data.ifZeroShowNull(item.getCaloric())+ ' ' + data.compareToLastParametr(11,item.getCaloric(),item.getId())}"></th>
                         <!--<th class="name" scope="row"><form th:action="${'/show/id/'+item.getId()}">-->
                             <!--<input type="submit" value="pokaż" />-->
                         <!--</form></th>-->

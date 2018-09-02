@@ -121,7 +121,7 @@
                     <img class="img-fluid" src="img/o1.png" alt="">
                     <h4>Ostatnio dodany rekord</h4>
                     <p>
-                        <span th:each="show : ${lastAddedRecordTime}" th:text="${data.convertTimestampToString(show.getCreationDate())}"></span>
+                        <span th:each="show : ${lastAddedRecordTime}" th:text="${data.convertTimestampToString(show.getCreationDate())}"></span> (data pomiaru <span th:each="show : ${lastAddedRecordTime}" th:text="${data.convertToCorrectDateFormat(show.getAddingDate())}"></span>)
                     </p>
                 </div>
             </div>
@@ -153,7 +153,7 @@
                     <img class="img-fluid" src="img/o1.png" alt="">
                     <h4>Najwyższa odnotowana waga</h4>
                     <p>
-                        <span th:each="maxWeight : ${theBiggestWeightRecord}" th:text="${maxWeight.getWeight()}"></span> kg, dnia <span th:each="maxWeight : ${theBiggestWeightRecord}" th:text="${data.convertTimestampToString(maxWeight.getCreationDate())}"></span>                    </p>
+                        <span th:each="maxWeight : ${theBiggestWeightRecord}" th:text="${maxWeight.getWeight()}"></span> kg, data pomiaru <span th:each="maxWeight : ${theBiggestWeightRecord}" th:text="${data.convertToCorrectDateFormat(maxWeight.getAddingDate())}"></span>                    </p>
                     </p>
                 </div>
             </div>
@@ -162,7 +162,7 @@
                     <img class="img-fluid" src="img/o2.png" alt="">
                     <h4>Najniższa odnotowana waga</h4>
                     <p>
-                        <span th:each="minWeight : ${theSmallestWeightRecord}" th:text="${minWeight.getWeight()}"></span> kg, dnia <span th:each="minWeight : ${theSmallestWeightRecord}" th:text="${data.convertTimestampToString(minWeight.getCreationDate())}"></span>                    </p>
+                        <span th:each="minWeight : ${theSmallestWeightRecord}" th:text="${minWeight.getWeight()}"></span> kg, data pomiaru <span th:each="minWeight : ${theSmallestWeightRecord}" th:text="${data.convertToCorrectDateFormat(minWeight.getAddingDate())}"></span>                    </p>
                 </div>
             </div>
             <div class="col-lg-4">
@@ -171,7 +171,7 @@
                     <h4>Twoja aktualna waga to</h4>
                     <p>
                         <span th:each="show : ${lastAddedRecordTime}" th:text="${show.getWeight()}"></span> kg,
-                        dana dnia <span th:each="show : ${lastAddedRecordTime}" th:text="${data.convertTimestampToString(show.getCreationDate())}"></span>
+                        data pomiaru <span th:each="show : ${lastAddedRecordTime}" th:text="${data.convertToCorrectDateFormat(show.getAddingDate())}"></span>
                     </p>
                 </div>
             </div>

@@ -148,7 +148,7 @@
                             <tr>
                                 <th class="name" scope="row">Tkanka tłuszczowa (%)</th>
                                 <th class="name" scope="row" th:each="lastFatToShow : ${lastFat}" th:text="${lastFatToShow.getFat()}"></th>
-                                <th class="name" scope="row"  th:each="lastFatToShow : ${lastFat}" th:text="${data.convertTimestampToString(lastFatToShow.getCreationDate())}"></th>
+                                <th class="name" scope="row"  th:each="lastFatToShow : ${lastFat}" th:text="${data.convertToCorrectDateFormat(lastFatToShow.getAddingDate())}"></th>
                                 <th class="name" scope="row"></th>
                                 <th class="name" scope="row"></th>
                             </tr>

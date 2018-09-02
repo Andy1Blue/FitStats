@@ -106,6 +106,9 @@
                                 <th class="head" colspan="2" scope="col" style="font-size: 25px;"><b>Dodaj rekord</b></th>
                             </tr>
                             <tr>
+                                <th class="head" scope="col">Data dokonania pomiaru:<br/><input type="date" th:field="*{addingDate}" onfocus="this.value=''" placeholder="2012-12-31"></th>
+                            </tr>
+                            <tr>
                                 <th class="head" scope="col" style="display:inline-block;vertical-align:middle;">Dodajesz jako:<br/>
                                     <select th:field="*{users}">
                                         <option th:each="value : ${userWhoLoginNow}" th:name="${value.getId()}" th:value="${value.getId()}" th:text="${value.getLogin()}"></option>

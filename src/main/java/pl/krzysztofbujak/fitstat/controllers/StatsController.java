@@ -39,7 +39,8 @@ public class StatsController {
             model.addAttribute("users", usersService.getUsers());
             model.addAttribute("login", loginService);
             model.addAttribute("data", dataServices);
-            model.addAttribute("dataLoginUser", dataRepository.findByUsers_IdOrderByIdDesc(loginService.getLoginId()));
+            model.addAttribute("dataLoginUser", dataRepository.findByUsers_IdOrderByAddingDateDesc(loginService.getLoginId()));
+            model.addAttribute("dataLoginUserOnlyLast", dataRepository.findByUsers_IdOrderByIdDesc(loginService.getLoginId()).get(0));
             model.addAttribute("countAllRecordByUserId", dataRepository.countByUsers_IdOrderByIdDesc(loginService.getLoginId()));
             model.addAttribute("lastAddedRecordTime", dataRepository.findByUsers_IdOrderByIdDesc(loginService.getLoginId()).subList(0, 1));
             model.addAttribute("theBiggestWeightRecord", dataRepository.findByUsers_IdOrderByWeightDesc(loginService.getLoginId()).subList(0, 1));
@@ -58,7 +59,7 @@ public class StatsController {
             model.addAttribute("users", usersService.getUsers());
             model.addAttribute("login", loginService);
             model.addAttribute("data", dataServices);
-            model.addAttribute("dataLoginUser", dataRepository.findByUsers_IdOrderByIdDesc(loginService.getLoginId()));
+            model.addAttribute("dataLoginUser", dataRepository.findByUsers_IdOrderByAddingDateDesc(loginService.getLoginId()));
             model.addAttribute("countAllRecordByUserId", dataRepository.countByUsers_IdOrderByIdDesc(loginService.getLoginId()));
             model.addAttribute("lastAddedRecordTime", dataRepository.findByUsers_IdOrderByIdDesc(loginService.getLoginId()).subList(0, 1));
             model.addAttribute("theBiggestWeightRecord", dataRepository.findByUsers_IdOrderByWeightDesc(loginService.getLoginId()).subList(0, 1));

@@ -6,6 +6,7 @@ import lombok.Setter;
 import pl.krzysztofbujak.fitstat.entities.UsersEntity;
 
 import java.time.LocalDateTime;
+import java.util.Date;
 
 @Getter
 @Setter
@@ -16,6 +17,8 @@ public class DataForm {
     private UsersEntity users;
 
     private LocalDateTime creationDate;
+
+    private String addingDate;
 
     private String comment;
 

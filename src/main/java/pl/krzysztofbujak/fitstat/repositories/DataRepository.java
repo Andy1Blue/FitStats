@@ -9,6 +9,7 @@ import java.util.List;
 @Repository
 public interface DataRepository extends CrudRepository<DataEntity, Integer> {
     List<DataEntity> findAllByOrderByIdDesc();
+    List<DataEntity> findByUsers_IdOrderByAddingDateDesc(int text);
     List<DataEntity> findByUsers_IdOrderByIdDesc(int text);
     DataEntity findByUsers_Id(int text);
     List<DataEntity> findByUsers_IdOrderByWeightDesc(int text);

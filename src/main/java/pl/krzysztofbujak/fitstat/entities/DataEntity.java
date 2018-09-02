@@ -8,6 +8,7 @@ import pl.krzysztofbujak.fitstat.forms.DataForm;
 import javax.persistence.*;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
+import java.util.Date;
 
 @Entity
 @Table(name = "fitstats_data")
@@ -26,6 +27,9 @@ public class DataEntity {
 
     @Column(name = "creation_date")
     private LocalDateTime creationDate;
+
+    @Column(name = "adding_date")
+    private String addingDate;
 
     private String comment;
 
@@ -57,6 +61,7 @@ public class DataEntity {
         setId(dataForm.getId());
         setUsers(dataForm.getUsers());
         setCreationDate(dataForm.getCreationDate());
+        setAddingDate(dataForm.getAddingDate());
         setComment(dataForm.getComment());
         setHand(dataForm.getHand());
         setWaist(dataForm.getWaist());
@@ -78,7 +83,8 @@ public class DataEntity {
                 "id=" + id +
                 ", users=" + users +
                 ", creationDate=" + creationDate +
-                ", comment=" + comment +
+                ", addingDate=" + addingDate +
+                ", comment='" + comment + '\'' +
                 ", hand=" + hand +
                 ", waist=" + waist +
                 ", belly=" + belly +

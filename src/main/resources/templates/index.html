@@ -113,7 +113,7 @@
                     <img class="img-fluid" src="img/o1.png" alt="">
                     <h4>Ostatnio dodałeś dane</h4>
                     <p>
-                        <span th:each="show : ${lastAddedRecordTime}" th:text="${data.convertTimestampToString(show.getCreationDate())}"></span>
+                        <span th:each="show : ${lastAddedRecordTime}" th:text="${data.convertTimestampToString(show.getCreationDate())}"></span><br>(data pomiaru <span th:each="show : ${lastAddedRecordTime}" th:text="${data.convertToCorrectDateFormat(show.getAddingDate())}"></span>)
                         <br/><br/><a href="/stats">zobacz</a> lub <a href="/add">dodaj nowy rekord</a>
                     </p>
                 </div>
@@ -134,7 +134,7 @@
                     <h4>Twoja aktualna waga to</h4>
                     <p>
                         <span th:each="show : ${lastAddedRecordTime}" th:text="${show.getWeight()}"></span> kg,
-                        dodałeś ją <span th:each="show : ${lastAddedRecordTime}" th:text="${data.convertTimestampToString(show.getCreationDate())}"></span>
+                        dodałeś ją <span th:each="show : ${lastAddedRecordTime}" th:text="${data.convertTimestampToString(show.getCreationDate())}"></span><br>(data pomiaru <span th:each="show : ${lastAddedRecordTime}" th:text="${data.convertToCorrectDateFormat(show.getAddingDate())}"></span>)
                         <br/><br/><a href="/add">dodaj nowy rekord</a>
                     </p>
                 </div>
