@@ -5,6 +5,7 @@ import org.springframework.stereotype.Repository;
 import pl.krzysztofbujak.fitstat.entities.DataEntity;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface DataRepository extends CrudRepository<DataEntity, Integer> {

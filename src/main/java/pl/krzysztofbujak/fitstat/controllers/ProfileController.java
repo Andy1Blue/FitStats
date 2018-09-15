@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import pl.krzysztofbujak.fitstat.repositories.DataRepository;
+import pl.krzysztofbujak.fitstat.repositories.LogsRepository;
 import pl.krzysztofbujak.fitstat.repositories.UsersRepository;
 import pl.krzysztofbujak.fitstat.services.DataServices;
 import pl.krzysztofbujak.fitstat.services.LoginService;
@@ -21,6 +22,9 @@ public class ProfileController {
     UsersRepository usersRepository;
 
     @Autowired
+    LogsRepository logsRepository;
+
+    @Autowired
     UsersService usersService;
 
     @Autowired
@@ -34,6 +38,12 @@ public class ProfileController {
         model.addAttribute("userId",usersRepository.findIdByLogin(name).getId());
         model.addAttribute("userName",usersRepository.findIdByLogin(name).getLogin());
         model.addAttribute("userCreationTime",usersRepository.findIdByLogin(name).getCreationTime());
+        if(!logsRepository.findByUsers_IdOrderByIdDesc(usersRepository.findIdByLogin(name).getId()).isEmpty())
+        {
+            model.addAttribute("userLastLogin", logsRepository.findByUsers_IdOrderByIdDesc(usersRepository.findIdByLogin(name).getId()).get(0).getAddingDate());
+        } else{
+            model.addAttribute("userLastLogin", "Brak logowania");
+        }
         model.addAttribute("data", dataServices);
         model.addAttribute("users", usersService);
         model.addAttribute("login",loginService);

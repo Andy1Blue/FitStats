@@ -36,7 +36,7 @@
         <div class="row header-top align-items-center">
             <div class="col-lg-4 col-sm-4 menu-top-left">
                 <!--left side-->
-               <a th:href="${login.isLogin() ? '/profile/' + login.getAuthor() : '/login'}">
+                <a th:href="${login.isLogin() ? '/profile/' + login.getAuthor() : '/login'}">
                    <img src="/img/avatar.png" height="40px" width="40px"/></a>
                     <a th:href="${'/profile/' + login.getAuthor()}" class="small-text">zobacz profil</a>
             </div>

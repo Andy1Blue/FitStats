@@ -6,8 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.stereotype.Service;
+import pl.krzysztofbujak.fitstat.entities.DataEntity;
+import pl.krzysztofbujak.fitstat.entities.LogsEntity;
 import pl.krzysztofbujak.fitstat.entities.UsersEntity;
 import pl.krzysztofbujak.fitstat.forms.LoginForm;
+import pl.krzysztofbujak.fitstat.repositories.LogsRepository;
 import pl.krzysztofbujak.fitstat.repositories.UsersRepository;
 
 @Service
@@ -18,6 +21,9 @@ public class LoginService {
 
     @Autowired
     UsersRepository usersRepository;
+
+    @Autowired
+    LogsRepository logsRepository;
 
     private boolean isLogin;
     private boolean isUserExist;
@@ -38,6 +44,11 @@ public class LoginService {
             author = usersEntity.getLogin();
             UsersEntity usersEntityForId = usersRepository.findIdByLogin(author);
             loginId = usersEntityForId.getId();
+
+            LogsEntity logsEntity = new LogsEntity();
+            logsEntity.setUsers(usersEntityForId);
+            logsEntity.setIp("0.0.0.0.0");
+            logsRepository.save(logsEntity);
         } else {
             isLogin = false;
         }
