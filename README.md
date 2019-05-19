@@ -10,3 +10,5 @@ Technologies and libraries
 Libraries and technologies used in the project:
 - Java
 - Spring Boot
+- Thymeleaf
+- JavaScript / CSS / HTML
